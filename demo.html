@@ -124,6 +124,37 @@
 			return searchNode(root,key);
 		};
 
+		// 删除节点
+		var removeNode=function(node,key){
+			if(node===null){
+				return null;
+			}
+			if(key<node.key){
+				node.left=removeNode(node.left,key);
+				return node;
+			}else if(key>node.key){
+				node.right=removeNode(node.right,key);
+				return node;
+			}else{
+				if(node.left===null&&node.right===null){
+					node=null;
+					return node;
+				}
+				if(node.left===null){
+					node=node.right;
+					return node;
+				}
+				if(node.right===null){
+					node=node.left;
+					return node;
+				}
+			}
+		};
+
+		this.remove=function(key){
+			root=removeNode(root,key);
+		};
+
 	};
 
 
@@ -139,17 +170,21 @@
 
 	// binaryTree.inOrderTraverse(callback);
 	// binaryTree.preOrderTraverse(callback);
-	binaryTree.postOrderTraverse(callback);
+	// binaryTree.postOrderTraverse(callback);
 
 	// 输出最小值
-	console.log("min node is :"+binaryTree.min());
+	// console.log("min node is :"+binaryTree.min());
 
 	// 输出最大值
-	console.log("max node is :"+binaryTree.max());
+	// console.log("max node is :"+binaryTree.max());
 
 	// 查找节点
-	console.log(binaryTree.search(7)?"key 7 is found":"key 7 is not found");
-	console.log(binaryTree.search(9)?"key 9 is found":"key 9 is not found");
+	// console.log(binaryTree.search(7)?"key 7 is found":"key 7 is not found");
+	// console.log(binaryTree.search(9)?"key 9 is found":"key 9 is not found");
+	
+	// 删除节点
+	binaryTree.remove(10);
+
 	</script>
 </body>
 </html>
